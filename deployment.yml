@@ -2,6 +2,7 @@ apiVersion: apps/v1 # Specifies the version of the Kubernetes API we are using t
 kind: Deployment # Indicates the type of Kubernetes object you are defining.
 metadata: # Provides basic information about the Deployment.
   name: user-service-depl # The name of the Deployment.
+  namespace: my-namespace # The namespace (optional)
   labels:
     app: user-service # Categorize and identify the Deployment within your Kubernetes cluster.
 spec: # Describes the desired state of the Deployment.
@@ -19,19 +20,19 @@ spec: # Describes the desired state of the Deployment.
           image: user-service:latest # The Docker image to use for the container.
           ports:
             - containerPort: 8080 # The ports that the container exposes
-	  env: # Set up environment variables
-            - name: DATABASE_URL # Config map value 1
-              valueFrom:
-                configMapKeyRef:
-                  name: my-app-config
-                  key: DATABASE_URL
-            - name: APP_MODE # Config map value 2  
-              valueFrom:
-                configMapKeyRef:
-                  name: my-app-config
-                  key: APP_MODE
-	    - name: ACCESS_TOKEN_SECRET # Secret value
-              valueFrom:
-                secretKeyRef:
-                  name: my-app-secret
-                  key: ACCESS_TOKEN_SECRET
+    env: # Set up environment variables
+      - name: DATABASE_URL # Config map value 1
+        valueFrom:
+          configMapKeyRef:
+            name: my-app-config
+            key: DATABASE_URL
+      - name: APP_MODE # Config map value 2  
+        valueFrom:
+          configMapKeyRef:
+            name: my-app-config
+            key: APP_MODE
+      - name: ACCESS_TOKEN_SECRET # Secret value
+        valueFrom:
+          secretKeyRef:
+            name: my-app-secret
+            key: ACCESS_TOKEN_SECRET

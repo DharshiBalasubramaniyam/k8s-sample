@@ -51,3 +51,13 @@ t’s automatically restarted or replaced, Everything can talk to each other eas
 ## Secret
 - A Secret is used to store sensitive data like passwords, API keys, or tokens securely. Secrets are encoded in Base64 to ensure safe transmission.
 - In the Deployment, we reference the Secret to inject the sensitive value into the container’s environment variables.
+
+## Namespaces
+- A Namespace is like a virtual cluster inside your real cluster.
+- It lets you logically separate and organize your Kubernetes resources (Pods, Deployments, Services, etc.).
+- When you install Kubernetes, it comes with a few built-in namespaces:
+	- default: The default for pods, deployments etc, if you don’t specify a namespace
+	- kube-system: Used by Kubernetes system components (e.g., kube-dns, scheduler)
+	- kube-public: Mostly unused, readable by all users, even unauthenticated
+	- kube-node-lease: Manages node heartbeat leases for node health monitoring
+- A Pod, Deployment, or any other resource in namespace A can only access ConfigMaps and Secrets in namespace A.
