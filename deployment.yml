@@ -1,7 +1,7 @@
 apiVersion: apps/v1 # Specifies the version of the Kubernetes API we are using to define the Deployment.
 kind: Deployment # Indicates the type of Kubernetes object you are defining.
 metadata: # Provides basic information about the Deployment.
-  name: backend-user-service # The name of the Deployment.
+  name: user-service-depl # The name of the Deployment.
   labels:
     app: user-service # Categorize and identify the Deployment within your Kubernetes cluster.
 spec: # Describes the desired state of the Deployment.
@@ -18,4 +18,4 @@ spec: # Describes the desired state of the Deployment.
         - name: user-service-container # The name of the container.
           image: user-service:latest # The Docker image to use for the container.
           ports:
-            - containerPort: 9002 # The ports that the container exposes
+            - containerPort: 8080 # The ports that the container exposes

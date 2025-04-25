@@ -22,6 +22,7 @@ t’s automatically restarted or replaced, Everything can talk to each other eas
 - A Service exposes the Pods to the outside world or to other Pods.
 - It provides a stable endpoint even the pods change.
 - It automatically load-balances traffic across Pods.
+- Service → matches Pods using labels → those Pods are created by a Deployment
 
 ## Node
 - A Node is a single machine (virtual or physical) in the cluster where pods run.

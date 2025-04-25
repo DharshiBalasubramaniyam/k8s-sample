@@ -1,0 +1,11 @@
+apiVersion: v1 # Specifies the Kubernetes API version for the Service object.
+kind: Service # Indicates the type of Kubernetes object you are defining.
+metadata: # Basic info about the Service
+  name: my-service # The name of the Service
+spec: # This is where you define how the Service behaves.
+  selector:
+    app: user-service # Matches labels on the Pods this Service should send traffic to.
+  ports:
+    - port: 80 # What port the Service listens on
+      targetPort: 8080 # Where to forward the traffic inside the Pod.
+  type: ClusterIP # Defines how the Service is exposed. ClusterIP, LoadBalancer or NodePort
