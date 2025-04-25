@@ -30,3 +30,8 @@ spec: # Describes the desired state of the Deployment.
                 configMapKeyRef:
                   name: my-app-config
                   key: APP_MODE
+	    - name: ACCESS_TOKEN_SECRET # Secret value
+              valueFrom:
+                secretKeyRef:
+                  name: my-app-secret
+                  key: ACCESS_TOKEN_SECRET

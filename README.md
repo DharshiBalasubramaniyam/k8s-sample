@@ -43,3 +43,11 @@ t’s automatically restarted or replaced, Everything can talk to each other eas
 - In MiniKube, service exposes your Pod(s) to other Pods or to your local machine.
 
 > Note: For production we can run k8s applications on cloud providers like AWS (EKS), Azure (AKS), or GCP (GKE).
+
+## Config map
+- A ConfigMap is used to store non-sensitive configuration data that our application can use.
+- We can inject the values from the ConfigMap into a container by using environment variables in our Deployment.
+
+## Secret
+- A Secret is used to store sensitive data like passwords, API keys, or tokens securely. Secrets are encoded in Base64 to ensure safe transmission.
+- In the Deployment, we reference the Secret to inject the sensitive value into the container’s environment variables.
