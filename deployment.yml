@@ -19,3 +19,14 @@ spec: # Describes the desired state of the Deployment.
           image: user-service:latest # The Docker image to use for the container.
           ports:
             - containerPort: 8080 # The ports that the container exposes
+	  env: # Set up environment variables
+            - name: DATABASE_URL # Config map value 1
+              valueFrom:
+                configMapKeyRef:
+                  name: my-app-config
+                  key: DATABASE_URL
+            - name: APP_MODE # Config map value 2  
+              valueFrom:
+                configMapKeyRef:
+                  name: my-app-config
+                  key: APP_MODE
