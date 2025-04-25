@@ -1,0 +1,21 @@
+apiVersion: apps/v1 # Specifies the version of the Kubernetes API we are using to define the Deployment.
+kind: Deployment # Indicates the type of Kubernetes object you are defining.
+metadata: # Provides basic information about the Deployment.
+  name: backend-user-service # The name of the Deployment.
+  labels:
+    app: user-service # Categorize and identify the Deployment within your Kubernetes cluster.
+spec: # Describes the desired state of the Deployment.
+  replicas: 3 # Defines how many Pods should be running.
+  selector: # Deployement find and match pods with this labels.
+    matchLabels:
+      app: user-service
+  template: # Defines the actual Pod template that will be used to create the Pods.
+    metadata: # Defines the metadata of the Pods.
+      labels: # Apply labels to the Pods, So that deployment and find and manage.
+        app: user-service
+    spec: # Describes the containers that will run in the Pods.
+      containers: # A list of containers to run in the Pod.
+        - name: user-service-container # The name of the container.
+          image: user-service:latest # The Docker image to use for the container.
+          ports:
+            - containerPort: 9002 # The ports that the container exposes
