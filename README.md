@@ -61,3 +61,11 @@ t’s automatically restarted or replaced, Everything can talk to each other eas
 	- kube-public: Mostly unused, readable by all users, even unauthenticated
 	- kube-node-lease: Manages node heartbeat leases for node health monitoring
 - A Pod, Deployment, or any other resource in namespace A can only access ConfigMaps and Secrets in namespace A.
+
+## Ingress
+
+- Ingress is a smart router that sends external traffic to the right service inside our cluster, usually over HTTP/HTTPS.
+- Without Ingress, we'd expose each service using a NodePort or LoadBalancer, which can get messy.
+- Ingress Controller: A special pod (like nginx-ingress-controller) that watches Ingress rules and does the actual routing.
+- Ingress Resource: YAML file where you define your routing rules.
+- Install an NGINX Ingress Controller in minikube: `minikube addons enable ingress`
