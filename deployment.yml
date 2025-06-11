@@ -17,7 +17,7 @@ spec: # Describes the desired state of the Deployment.
     spec: # Describes the containers that will run in the Pods.
       containers: # A list of containers to run in the Pod.
         - name: user-service-container # The name of the container.
-          image: user-service:latest # The Docker image to use for the container.
+          image: <YOUR_DOCKER_USERNAME>/<IMAGE_NAME>:<TAG_NAME> # The Docker image to use for the container.
           ports:
             - containerPort: 8080 # The ports that the container exposes
     env: # Set up environment variables
