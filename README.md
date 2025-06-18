@@ -17,12 +17,30 @@ t’s automatically restarted or replaced, Everything can talk to each other eas
 ## Deployment
 - A Deployment manages the ReplicaSet.
 - So, Deployment → controls ReplicaSet → which manages Pods.
+- Deployment is used to create stateless pods.
+
+## StatefulSet
+- It’s like a Deployment, but for apps that need: **Stable identity (name, network)**, **Stable storage (volume)**, **Ordered deployment & scaling**. e.g., databases, queues, etc
+
+| Deployment | StatefulSet |
+|------------|-------------|
+|Stateless apps|Stateful apps|
+|Web servers, APIs, frontend|Databases, Kafka, Redis (with data), Zookeeper|
+|Pods get predictable names: `app-0, app-1, app-2`. If a pod dies, new pod gets same name. | Pods get random hashed names: `app-4581f5, app-a45f1b, app-458ff`. If a pod dies, new pod gets different hashed name. |
+|Each pod has its own PV(Stable Persistent Volumes). Pod-0 always uses its own PV-0. | Pods don't have PV |
+|Pods start and stop in order. Starts one pod at a time (ordered) | Start or stop all at once |
+|Each pods get a DNS name `mysql-0.mysql.default.svc.cluster.local`| Pod names are random `frontend-5d7f9696b7-2abc9`| 
 
 ## Service
 - A Service exposes the Pods to the outside world or to other Pods.
-- It provides a stable endpoint even the pods change.
-- It automatically load-balances traffic across Pods.
+- Stable IP address - It provides a stable endpoint even the pods change.
+- Load balancing - It automatically load-balances traffic across Pods.
 - Service → matches Pods using labels → those Pods are created by a Deployment
+- **Types:**
+	- **ClusterIP**: Default. Access from inside the cluster only. Other pods inside the cluster can reach it. e.g., Ingress to Service1
+   	- **Headless**: Used when a user needs to access a particular pod. Useful for stateful apps (databases, etc) that need to know individual pod IPs. Set via `ClusterIP: None`.
+   	- **NodePort**: Exposes service outside the cluster via a port on each node. Set via `type: NodePort`. e.g., Browser to Service1
+   	- **LoadBalancer**: Creates an external IP with a real cloud load balancer (AWS, GCP, Azure, etc). Set via `type: LoadBalancer`. e.g., AWS LB to Service1
 
 ## Node
 - A Node is a single machine (virtual or physical) in the cluster where pods run.
