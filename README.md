@@ -1,5 +1,5 @@
 # Kubernetes
-- Kubernetes (K8s) is a tool that helps you manage and orchestrate (i.e., automate) containers at scale.
+- Kubernetes (K8s) is a tool that helps you manage and orchestrate (i.e., automate) containers (i.e., Docker) at scale.
 - It’s like a manager for your containers, ensuring that: They run properly, They can scale up or down based on traffic, If one fails,
 t’s automatically restarted or replaced, Everything can talk to each other easily
 
